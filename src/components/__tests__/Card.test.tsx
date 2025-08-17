@@ -45,13 +45,15 @@ describe('Card Component', () => {
   describe('Edge Cases', () => {
     it('handles empty children gracefully', () => {
       render(<Card children="" />);
-      const card = screen.getByRole('generic');
+      // Use querySelector to find the card element directly
+      const card = document.querySelector('.card');
       expect(card).toBeInTheDocument();
     });
 
     it('handles null children gracefully', () => {
       render(<Card children={null} />);
-      const card = screen.getByRole('generic');
+      // Use querySelector to find the card element directly
+      const card = document.querySelector('.card');
       expect(card).toBeInTheDocument();
     });
 

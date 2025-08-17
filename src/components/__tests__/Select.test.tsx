@@ -100,7 +100,7 @@ describe('Select Component', () => {
 
   describe('Edge Cases', () => {
     it('handles undefined onChange gracefully', () => {
-      render(<Select options={defaultOptions} value="" />);
+      render(<Select options={defaultOptions} />);
       const select = screen.getByRole('combobox');
       expect(() => fireEvent.change(select, { target: { value: '1' } })).not.toThrow();
     });
