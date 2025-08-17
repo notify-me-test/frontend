@@ -66,16 +66,17 @@ const Select: React.FC<SelectProps> = ({
 }) => {
   return (
     <StyledSelect
-      value={value}
+      value={String(value || '')}
       onChange={onChange}
       className={`select ${className || ''}`}
       style={style}
       name={name}
       id={id}
+      role="combobox"
       {...rest}
     >
       {options.map((option, index) => (
-        <option key={index} value={option.value}>
+        <option key={index} value={String(option.value)}>
           {option.label}
         </option>
       ))}
