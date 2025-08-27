@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Product, Category, ProductFilters } from "../types";
 import { productService, categoryService } from "../services/api";
 import ProductFilterBar from "./ProductFilterBar";
@@ -15,14 +15,6 @@ const ProductList: React.FC<ProductListProps> = ({ showFilters = true }) => {
   const [error, setError] = useState<string | null>(null);
   const [filters, setFilters] = useState<ProductFilters>({});
 
-  useEffect(() => {
-    loadCategories();
-  }, []);
-
-  useEffect(() => {
-    loadProducts();
-  }, [filters]);
-
   const loadCategories = async () => {
     try {
       const data = await categoryService.getCategories();
@@ -32,7 +24,7 @@ const ProductList: React.FC<ProductListProps> = ({ showFilters = true }) => {
     }
   };
 
-  const loadProducts = async () => {
+  const loadProducts = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -53,7 +45,15 @@ const ProductList: React.FC<ProductListProps> = ({ showFilters = true }) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [filters]);
+
+  useEffect(() => {
+    loadCategories();
+  }, []);
+
+  useEffect(() => {
+    loadProducts();
+  }, [loadProducts]);
 
   const handleFilterChange = (key: keyof ProductFilters, value: any) => {
     setFilters((prev) => ({
