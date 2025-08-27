@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import ProductList from './components/ProductList';
-import InventoryManager from './components/InventoryManager';
+import React, { useState } from "react";
+import styled from "styled-components";
+import ProductList from "./components/ProductList";
+import InventoryManager from "./components/InventoryManager";
 
 const AppContainer = styled.div`
   min-height: 100vh;
@@ -12,7 +12,7 @@ const Header = styled.header`
   background: #343a40;
   color: white;
   padding: 1rem 0;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
 const HeaderContent = styled.div`
@@ -35,16 +35,16 @@ const Navigation = styled.nav`
 `;
 
 const NavButton = styled.button<{ active?: boolean }>`
-  background: ${props => props.active ? '#007bff' : 'transparent'};
+  background: ${(props) => (props.active ? "#007bff" : "transparent")};
   color: white;
-  border: 1px solid ${props => props.active ? '#007bff' : '#6c757d'};
+  border: 1px solid ${(props) => (props.active ? "#007bff" : "#6c757d")};
   padding: 8px 16px;
   border-radius: 4px;
   cursor: pointer;
   font-size: 14px;
-  
+
   &:hover {
-    background: ${props => props.active ? '#0056b3' : '#495057'};
+    background: ${(props) => (props.active ? "#0056b3" : "#495057")};
   }
 `;
 
@@ -54,16 +54,16 @@ const MainContent = styled.main`
   padding: 0 20px;
 `;
 
-type ActiveTab = 'products' | 'inventory';
+type ActiveTab = "products" | "inventory";
 
 function App() {
-  const [activeTab, setActiveTab] = useState<ActiveTab>('products');
+  const [activeTab, setActiveTab] = useState<ActiveTab>("products");
 
   const renderContent = () => {
     switch (activeTab) {
-      case 'products':
+      case "products":
         return <ProductList />;
-      case 'inventory':
+      case "inventory":
         return <InventoryManager />;
       default:
         return <ProductList />;
@@ -76,25 +76,23 @@ function App() {
         <HeaderContent>
           <Logo>E-commerce Admin</Logo>
           <Navigation>
-            <NavButton 
-              active={activeTab === 'products'}
-              onClick={() => setActiveTab('products')}
+            <NavButton
+              active={activeTab === "products"}
+              onClick={() => setActiveTab("products")}
             >
               Products
             </NavButton>
-            <NavButton 
-              active={activeTab === 'inventory'}
-              onClick={() => setActiveTab('inventory')}
+            <NavButton
+              active={activeTab === "inventory"}
+              onClick={() => setActiveTab("inventory")}
             >
               Inventory
             </NavButton>
           </Navigation>
         </HeaderContent>
       </Header>
-      
-      <MainContent>
-        {renderContent()}
-      </MainContent>
+
+      <MainContent>{renderContent()}</MainContent>
     </AppContainer>
   );
 }

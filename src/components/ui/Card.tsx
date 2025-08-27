@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 export interface CardProps {
   children: React.ReactNode;
@@ -13,10 +13,10 @@ const StyledCard = styled.div<CardProps>`
   border-radius: 8px;
   padding: 16px;
   background: white;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   font-family: inherit;
-  
-  ${props => props.className && props.className}
+
+  ${(props) => props.className && props.className}
 `;
 
 const Card: React.FC<CardProps> = ({
@@ -28,7 +28,7 @@ const Card: React.FC<CardProps> = ({
 }) => {
   return (
     <StyledCard
-      className={`card ${className || ''}`}
+      className={`card ${className || ""}`}
       style={style}
       id={id}
       {...rest}

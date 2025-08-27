@@ -1,200 +1,219 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
-import Table, { TableHeader, TableBody, TableRow, TableCell } from '../ui/Table';
+import React from "react";
+import { render, screen } from "@testing-library/react";
+import "@testing-library/jest-dom";
+import Table, {
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableCell,
+} from "../ui/Table";
 
-describe('Table Component', () => {
-  describe('Table', () => {
+describe("Table Component", () => {
+  describe("Table", () => {
     const defaultProps = {
-      children: <tbody><tr><td>Test content</td></tr></tbody>,
+      children: (
+        <tbody>
+          <tr>
+            <td>Test content</td>
+          </tr>
+        </tbody>
+      ),
     };
 
-    it('renders table with children content', () => {
+    it("renders table with children content", () => {
       render(<Table {...defaultProps} />);
-      const table = screen.getByRole('table');
+      const table = screen.getByRole("table");
       expect(table).toBeInTheDocument();
-      expect(screen.getByText('Test content')).toBeInTheDocument();
+      expect(screen.getByText("Test content")).toBeInTheDocument();
     });
 
-    it('renders table with custom className', () => {
+    it("renders table with custom className", () => {
       render(<Table {...defaultProps} className="custom-table" />);
-      const table = screen.getByRole('table');
-      expect(table).toHaveClass('custom-table');
+      const table = screen.getByRole("table");
+      expect(table).toHaveClass("custom-table");
     });
 
-    it('renders table with custom style', () => {
-      const customStyle = { backgroundColor: 'red' };
+    it("renders table with custom style", () => {
+      const customStyle = { backgroundColor: "red" };
       render(<Table {...defaultProps} style={customStyle} />);
-      const table = screen.getByRole('table');
-      expect(table).toHaveStyle('background-color: red');
+      const table = screen.getByRole("table");
+      expect(table).toHaveStyle("background-color: red");
     });
 
-    it('renders table with custom id', () => {
+    it("renders table with custom id", () => {
       render(<Table {...defaultProps} id="data-table" />);
-      const table = screen.getByRole('table');
-      expect(table).toHaveAttribute('id', 'data-table');
+      const table = screen.getByRole("table");
+      expect(table).toHaveAttribute("id", "data-table");
     });
 
-    it('applies default table styling', () => {
+    it("applies default table styling", () => {
       render(<Table {...defaultProps} />);
-      const table = screen.getByRole('table');
-      expect(table).toHaveClass('table');
+      const table = screen.getByRole("table");
+      expect(table).toHaveClass("table");
     });
   });
 
-  describe('TableHeader', () => {
+  describe("TableHeader", () => {
     const defaultProps = {
-      children: <tr><th>Header</th></tr>,
+      children: (
+        <tr>
+          <th>Header</th>
+        </tr>
+      ),
     };
 
-    it('renders thead with children content', () => {
+    it("renders thead with children content", () => {
       render(
         <Table>
           <TableHeader {...defaultProps} />
-        </Table>
+        </Table>,
       );
-      expect(screen.getByText('Header')).toBeInTheDocument();
+      expect(screen.getByText("Header")).toBeInTheDocument();
     });
 
-    it('renders thead with custom className', () => {
+    it("renders thead with custom className", () => {
       render(
         <Table>
           <TableHeader {...defaultProps} className="custom-header" />
-        </Table>
+        </Table>,
       );
-      const thead = screen.getByText('Header').closest('thead');
-      expect(thead).toHaveClass('custom-header');
+      const thead = screen.getByText("Header").closest("thead");
+      expect(thead).toHaveClass("custom-header");
     });
 
-    it('renders thead with custom style', () => {
-      const customStyle = { backgroundColor: 'blue' };
+    it("renders thead with custom style", () => {
+      const customStyle = { backgroundColor: "blue" };
       render(
         <Table>
           <TableHeader {...defaultProps} style={customStyle} />
-        </Table>
+        </Table>,
       );
-      const thead = screen.getByText('Header').closest('thead');
-      expect(thead).toHaveStyle('background-color: blue');
+      const thead = screen.getByText("Header").closest("thead");
+      expect(thead).toHaveStyle("background-color: blue");
     });
 
-    it('applies default thead styling', () => {
+    it("applies default thead styling", () => {
       render(
         <Table>
           <TableHeader {...defaultProps} />
-        </Table>
+        </Table>,
       );
-      const thead = screen.getByText('Header').closest('thead');
-      expect(thead).toHaveClass('table__header');
+      const thead = screen.getByText("Header").closest("thead");
+      expect(thead).toHaveClass("table__header");
     });
   });
 
-  describe('TableBody', () => {
+  describe("TableBody", () => {
     const defaultProps = {
-      children: <tr><td>Body content</td></tr>,
+      children: (
+        <tr>
+          <td>Body content</td>
+        </tr>
+      ),
     };
 
-    it('renders tbody with children content', () => {
+    it("renders tbody with children content", () => {
       render(
         <Table>
           <TableBody {...defaultProps} />
-        </Table>
+        </Table>,
       );
-      expect(screen.getByText('Body content')).toBeInTheDocument();
+      expect(screen.getByText("Body content")).toBeInTheDocument();
     });
 
-    it('renders tbody with custom className', () => {
+    it("renders tbody with custom className", () => {
       render(
         <Table>
           <TableBody {...defaultProps} className="custom-body" />
-        </Table>
+        </Table>,
       );
-      const tbody = screen.getByText('Body content').closest('tbody');
-      expect(tbody).toHaveClass('custom-body');
+      const tbody = screen.getByText("Body content").closest("tbody");
+      expect(tbody).toHaveClass("custom-body");
     });
 
-    it('renders tbody with custom style', () => {
-      const customStyle = { backgroundColor: 'green' };
+    it("renders tbody with custom style", () => {
+      const customStyle = { backgroundColor: "green" };
       render(
         <Table>
           <TableBody {...defaultProps} style={customStyle} />
-        </Table>
+        </Table>,
       );
-      const tbody = screen.getByText('Body content').closest('tbody');
-      expect(tbody).toHaveStyle('background-color: green');
+      const tbody = screen.getByText("Body content").closest("tbody");
+      expect(tbody).toHaveStyle("background-color: green");
     });
 
-    it('applies default tbody styling', () => {
+    it("applies default tbody styling", () => {
       render(
         <Table>
           <TableBody {...defaultProps} />
-        </Table>
+        </Table>,
       );
-      const tbody = screen.getByText('Body content').closest('tbody');
-      expect(tbody).toHaveClass('table__body');
+      const tbody = screen.getByText("Body content").closest("tbody");
+      expect(tbody).toHaveClass("table__body");
     });
   });
 
-  describe('TableRow', () => {
+  describe("TableRow", () => {
     const defaultProps = {
       children: <td>Row content</td>,
     };
 
-    it('renders tr with children content', () => {
+    it("renders tr with children content", () => {
       render(
         <Table>
           <TableBody>
             <TableRow {...defaultProps} />
           </TableBody>
-        </Table>
+        </Table>,
       );
-      expect(screen.getByText('Row content')).toBeInTheDocument();
+      expect(screen.getByText("Row content")).toBeInTheDocument();
     });
 
-    it('renders tr with custom className', () => {
+    it("renders tr with custom className", () => {
       render(
         <Table>
           <TableBody>
             <TableRow {...defaultProps} className="custom-row" />
           </TableBody>
-        </Table>
+        </Table>,
       );
-      const tr = screen.getByText('Row content').closest('tr');
-      expect(tr).toHaveClass('custom-row');
+      const tr = screen.getByText("Row content").closest("tr");
+      expect(tr).toHaveClass("custom-row");
     });
 
-    it('renders tr with custom style', () => {
-      const customStyle = { backgroundColor: 'yellow' };
+    it("renders tr with custom style", () => {
+      const customStyle = { backgroundColor: "yellow" };
       render(
         <Table>
           <TableBody>
             <TableRow {...defaultProps} style={customStyle} />
           </TableBody>
-        </Table>
+        </Table>,
       );
-      const tr = screen.getByText('Row content').closest('tr');
-      expect(tr).toHaveStyle('background-color: yellow');
+      const tr = screen.getByText("Row content").closest("tr");
+      expect(tr).toHaveStyle("background-color: yellow");
     });
 
-    it('applies default tr styling', () => {
+    it("applies default tr styling", () => {
       render(
         <Table>
           <TableBody>
             <TableRow {...defaultProps} />
           </TableBody>
-        </Table>
+        </Table>,
       );
-      const tr = screen.getByText('Row content').closest('tr');
-      expect(tr).toHaveClass('table__row');
+      const tr = screen.getByText("Row content").closest("tr");
+      expect(tr).toHaveClass("table__row");
     });
   });
 
-  describe('TableCell', () => {
-    describe('Regular Cell (td)', () => {
+  describe("TableCell", () => {
+    describe("Regular Cell (td)", () => {
       const defaultProps = {
-        children: 'Cell content',
+        children: "Cell content",
       };
 
-      it('renders td with children content', () => {
+      it("renders td with children content", () => {
         render(
           <Table>
             <TableBody>
@@ -202,12 +221,12 @@ describe('Table Component', () => {
                 <TableCell {...defaultProps} />
               </TableRow>
             </TableBody>
-          </Table>
+          </Table>,
         );
-        expect(screen.getByText('Cell content')).toBeInTheDocument();
+        expect(screen.getByText("Cell content")).toBeInTheDocument();
       });
 
-      it('renders td with custom className', () => {
+      it("renders td with custom className", () => {
         render(
           <Table>
             <TableBody>
@@ -215,14 +234,14 @@ describe('Table Component', () => {
                 <TableCell {...defaultProps} className="custom-cell" />
               </TableRow>
             </TableBody>
-          </Table>
+          </Table>,
         );
-        const td = screen.getByText('Cell content');
-        expect(td).toHaveClass('custom-cell');
+        const td = screen.getByText("Cell content");
+        expect(td).toHaveClass("custom-cell");
       });
 
-      it('renders td with custom style', () => {
-        const customStyle = { backgroundColor: 'orange' };
+      it("renders td with custom style", () => {
+        const customStyle = { backgroundColor: "orange" };
         render(
           <Table>
             <TableBody>
@@ -230,13 +249,13 @@ describe('Table Component', () => {
                 <TableCell {...defaultProps} style={customStyle} />
               </TableRow>
             </TableBody>
-          </Table>
+          </Table>,
         );
-        const td = screen.getByText('Cell content');
-        expect(td).toHaveStyle('background-color: orange');
+        const td = screen.getByText("Cell content");
+        expect(td).toHaveStyle("background-color: orange");
       });
 
-      it('applies default td styling', () => {
+      it("applies default td styling", () => {
         render(
           <Table>
             <TableBody>
@@ -244,20 +263,20 @@ describe('Table Component', () => {
                 <TableCell {...defaultProps} />
               </TableRow>
             </TableBody>
-          </Table>
+          </Table>,
         );
-        const td = screen.getByText('Cell content');
-        expect(td).toHaveClass('table__cell');
+        const td = screen.getByText("Cell content");
+        expect(td).toHaveClass("table__cell");
       });
     });
 
-    describe('Header Cell (th)', () => {
+    describe("Header Cell (th)", () => {
       const defaultProps = {
-        children: 'Header content',
+        children: "Header content",
         isHeader: true,
       };
 
-      it('renders th when isHeader is true', () => {
+      it("renders th when isHeader is true", () => {
         render(
           <Table>
             <TableHeader>
@@ -265,13 +284,13 @@ describe('Table Component', () => {
                 <TableCell {...defaultProps} />
               </TableRow>
             </TableHeader>
-          </Table>
+          </Table>,
         );
-        const th = screen.getByText('Header content');
-        expect(th.tagName).toBe('TH');
+        const th = screen.getByText("Header content");
+        expect(th.tagName).toBe("TH");
       });
 
-      it('renders th with custom className', () => {
+      it("renders th with custom className", () => {
         render(
           <Table>
             <TableHeader>
@@ -279,14 +298,14 @@ describe('Table Component', () => {
                 <TableCell {...defaultProps} className="custom-header-cell" />
               </TableRow>
             </TableHeader>
-          </Table>
+          </Table>,
         );
-        const th = screen.getByText('Header content');
-        expect(th).toHaveClass('custom-header-cell');
+        const th = screen.getByText("Header content");
+        expect(th).toHaveClass("custom-header-cell");
       });
 
-      it('renders th with custom style', () => {
-        const customStyle = { backgroundColor: 'purple' };
+      it("renders th with custom style", () => {
+        const customStyle = { backgroundColor: "purple" };
         render(
           <Table>
             <TableHeader>
@@ -294,13 +313,13 @@ describe('Table Component', () => {
                 <TableCell {...defaultProps} style={customStyle} />
               </TableRow>
             </TableHeader>
-          </Table>
+          </Table>,
         );
-        const th = screen.getByText('Header content');
-        expect(th).toHaveStyle('background-color: purple');
+        const th = screen.getByText("Header content");
+        expect(th).toHaveStyle("background-color: purple");
       });
 
-      it('applies default th styling', () => {
+      it("applies default th styling", () => {
         render(
           <Table>
             <TableHeader>
@@ -308,16 +327,16 @@ describe('Table Component', () => {
                 <TableCell {...defaultProps} />
               </TableRow>
             </TableHeader>
-          </Table>
+          </Table>,
         );
-        const th = screen.getByText('Header content');
-        expect(th).toHaveClass('table__cell--header');
+        const th = screen.getByText("Header content");
+        expect(th).toHaveClass("table__cell--header");
       });
     });
   });
 
-  describe('Complete Table Structure', () => {
-    it('renders a complete table with all components', () => {
+  describe("Complete Table Structure", () => {
+    it("renders a complete table with all components", () => {
       render(
         <Table>
           <TableHeader>
@@ -336,38 +355,46 @@ describe('Table Component', () => {
               <TableCell>$20.99</TableCell>
             </TableRow>
           </TableBody>
-        </Table>
+        </Table>,
       );
 
       // Check table structure
-      expect(screen.getByRole('table')).toBeInTheDocument();
-      
+      expect(screen.getByRole("table")).toBeInTheDocument();
+
       // Check header content
-      expect(screen.getByText('Name')).toBeInTheDocument();
-      expect(screen.getByText('Price')).toBeInTheDocument();
-      
+      expect(screen.getByText("Name")).toBeInTheDocument();
+      expect(screen.getByText("Price")).toBeInTheDocument();
+
       // Check body content
-      expect(screen.getByText('Product 1')).toBeInTheDocument();
-      expect(screen.getByText('Product 2')).toBeInTheDocument();
-      expect(screen.getByText('$10.99')).toBeInTheDocument();
-      expect(screen.getByText('$20.99')).toBeInTheDocument();
+      expect(screen.getByText("Product 1")).toBeInTheDocument();
+      expect(screen.getByText("Product 2")).toBeInTheDocument();
+      expect(screen.getByText("$10.99")).toBeInTheDocument();
+      expect(screen.getByText("$20.99")).toBeInTheDocument();
     });
   });
 
-  describe('Edge Cases', () => {
-    it('handles empty children gracefully', () => {
-      render(<Table><tbody></tbody></Table>);
-      const table = screen.getByRole('table');
+  describe("Edge Cases", () => {
+    it("handles empty children gracefully", () => {
+      render(
+        <Table>
+          <tbody></tbody>
+        </Table>,
+      );
+      const table = screen.getByRole("table");
       expect(table).toBeInTheDocument();
     });
 
-    it('handles null children gracefully', () => {
-      render(<Table><tbody>{null}</tbody></Table>);
-      const table = screen.getByRole('table');
+    it("handles null children gracefully", () => {
+      render(
+        <Table>
+          <tbody>{null}</tbody>
+        </Table>,
+      );
+      const table = screen.getByRole("table");
       expect(table).toBeInTheDocument();
     });
 
-    it('handles complex children content', () => {
+    it("handles complex children content", () => {
       const complexContent = (
         <TableBody>
           <TableRow>
@@ -380,10 +407,10 @@ describe('Table Component', () => {
           </TableRow>
         </TableBody>
       );
-      
+
       render(<Table>{complexContent}</Table>);
-      expect(screen.getByText('Bold text')).toBeInTheDocument();
-      expect(screen.getByText('and regular text')).toBeInTheDocument();
+      expect(screen.getByText("Bold text")).toBeInTheDocument();
+      expect(screen.getByText("and regular text")).toBeInTheDocument();
     });
   });
 });

@@ -1,8 +1,8 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 export interface InputProps {
-  type?: 'text' | 'number';
+  type?: "text" | "number";
   value?: string | number;
   placeholder?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -23,23 +23,23 @@ const StyledInput = styled.input<InputProps>`
   font-family: inherit;
   line-height: 1.5;
   transition: border-color 0.15s ease-in-out;
-  
+
   &:focus {
     outline: none;
     border-color: #007bff;
   }
-  
+
   &:disabled {
     background-color: #e9ecef;
     cursor: not-allowed;
     opacity: 0.65;
   }
-  
-  ${props => props.className && props.className}
+
+  ${(props) => props.className && props.className}
 `;
 
 const Input: React.FC<InputProps> = ({
-  type = 'text',
+  type = "text",
   value,
   placeholder,
   onChange,
@@ -59,7 +59,7 @@ const Input: React.FC<InputProps> = ({
       onChange={onChange}
       onBlur={onBlur}
       disabled={disabled}
-      className={`input ${className || ''}`}
+      className={`input ${className || ""}`}
       style={style}
       name={name}
       id={id}
